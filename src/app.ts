@@ -1,16 +1,19 @@
 import express from "express";
+
 import config from "config";
 
-import log from "./utils/logger";
 import connect from "./utils/connect";
+import log from "./utils/logger";
 
-const app = express();
+import routes from "./routes";
 
 const PORT = config.get<number>("port");
 
-app.use(express.json());
+const app = express();
 
+app.use(express.json());
 app.listen(PORT, async () => {
-  log.info(`TS server started at PORT ${PORT}`);
+  log.info(`TS server up and running at localhost port ${PORT}`);
   await connect();
+  routes(app);
 });

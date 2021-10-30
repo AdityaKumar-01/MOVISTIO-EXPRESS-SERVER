@@ -2,7 +2,7 @@ import {object, string, TypeOf} from 'zod'
 
 const createUserSchema = object({
   body: object({
-    Username: string({
+    userName: string({
       required_error: "Username required",
     }),
     password: string({
@@ -17,6 +17,6 @@ const createUserSchema = object({
   }),
 });
 
-export type CreateUserInput = Omit<TypeOf<typeof createUserSchema>,"body.confirmPassword">;
+export type createUserInput = Omit<TypeOf<typeof createUserSchema>,"body.confirmPassword">;
 
 export default createUserSchema
