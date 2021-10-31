@@ -8,7 +8,6 @@
 ### Prerequisites
 <em> ‼️ You should have node version higher than 8</em><br>
 <em> ‼️ Get a free account of Mongo atlas and pen down your DB's cluster connect URL</em><br>
-<em> ‼️ Get a free account of <a href="https://chatengine.io/">Chat Engine</a> and note down your <strong>project ID</strong> and <strong>API key</strong> </em><br>
 
 <br>
 
