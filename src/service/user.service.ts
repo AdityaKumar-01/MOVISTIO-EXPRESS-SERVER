@@ -7,6 +7,10 @@ const createUser = async (
   >
 ) => {
   try {
+    let users = await UserModel.find({userName:input["userName"]})
+    if(users.length > 0) {
+      throw new Error("User already exists ")
+    }
     return await UserModel.create(input);
   } catch (e: any) {
     throw new Error(e);
