@@ -1,8 +1,8 @@
 import { object, tuple, number, TypeOf, string } from "zod";
 
-const createRatingSchema = object({
+export const createRatingSchema = object({
   body: object({
-    userName: string({
+    username: string({
       required_error: "Username required",
     }),
     ratings: tuple([
@@ -18,6 +18,12 @@ const createRatingSchema = object({
   }),
 });
 
+export const getRatingSchema = object({
+  params: object({
+    username: string({
+      required_error: "Username required",
+    }),
+  }),
+});
 export type CreateRatingInput = TypeOf<typeof createRatingSchema>;
-
-export default createRatingSchema;
+export type GetRatingInput = TypeOf<typeof getRatingSchema>;

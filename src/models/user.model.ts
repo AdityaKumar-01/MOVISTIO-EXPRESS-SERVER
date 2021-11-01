@@ -3,17 +3,16 @@ import bcrypt from "bcrypt";
 import config from "config";
 
 export interface UserDocument extends mongoose.Document {
-  userName: string;
+  username: string;
   password: string;
   createdAt: Date;
   updatedAt: Date;
   comparePassword(candidatePassword: string): Promise<boolean>;
 }
 
-
 const userSchema = new mongoose.Schema(
   {
-    userName: { type: String, required: true },
+    username: { type: String, required: true },
     password: { type: String, required: true },
   },
   { timestamps: true }

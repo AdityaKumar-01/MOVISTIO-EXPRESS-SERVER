@@ -1,8 +1,6 @@
 import { DocumentDefinition } from "mongoose";
 import UserModel, { UserDocument } from "../models/user.model";
 import bcrypt from "bcrypt";
-import config from "config";
-import log from "./../utils/logger";
 
 export const createUser = async (
   input: DocumentDefinition<
@@ -10,7 +8,7 @@ export const createUser = async (
   >
 ) => {
   try {
-    let users = await UserModel.find({ userName: input["userName"] });
+    let users = await UserModel.find({ userName: input["username"] });
     if (users.length > 0) {
       throw new Error("User already exists ");
     }
@@ -26,7 +24,7 @@ export const getUser = async (
   >
 ) => {
   let user = await UserModel.find({
-    userName: input["userName"],
+    username: input["username"],
   });
   if (
     user.length == 1 &&
