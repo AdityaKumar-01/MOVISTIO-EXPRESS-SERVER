@@ -1,6 +1,6 @@
-import {object, string, TypeOf} from 'zod'
+import { object, string, TypeOf } from "zod";
 
-const createUserSchema = object({
+export const createUserSchema = object({
   body: object({
     userName: string({
       required_error: "Username required",
@@ -17,6 +17,20 @@ const createUserSchema = object({
   }),
 });
 
-export type CreateUserInput = Omit<TypeOf<typeof createUserSchema>,"body.confirmPassword">;
+export const getUserSchema = object({
+  body: object({
+    userName: string({
+      required_error: "Username required",
+    }),
+    password: string({
+      required_error: "Password required",
+    })
+  }),
+});
 
-export default createUserSchema
+export type createUserInput = Omit<
+  TypeOf<typeof createUserSchema>,
+  "body.confirmPassword"
+>;
+
+export type getUserInput = TypeOf<typeof getUserSchema>;

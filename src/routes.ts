@@ -1,9 +1,12 @@
 import { Express, Request, Response } from "express";
-import createUserHandler from "./controller/user.controller";
+import {
+  createUserHandler,
+  getUserHandler,
+} from "./controller/user.controller";
 import validateResource from "./middleware/validateResource";
 import UserModel from "./models/user.model";
 import createRatingSchema from "./schema/rating.schema";
-import createUserSchema from "./schema/user.schema";
+import { createUserSchema, getUserSchema } from "./schema/user.schema";
 import log from "./utils/logger";
 import postRatingHandler from "./controller/rating.controller";
 
@@ -27,15 +30,13 @@ const routes = (app: Express) => {
     validateResource(createUserSchema),
     createUserHandler
   );
-  app.post("/api/login-user",(req,res) => {
-    validateResource(createUserSchema), createUserHandler;
-  })
+  app.post("/api/login-user", validateResource(getUserSchema), getUserHandler);
+
   app.post(
     "/api/post-rating",
     validateResource(createRatingSchema),
     postRatingHandler
   );
-  
 };
 
 export default routes;
