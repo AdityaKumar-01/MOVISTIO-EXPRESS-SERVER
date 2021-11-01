@@ -1,4 +1,4 @@
-import { Express, Request, Response } from "express";
+  import { Express, Request, Response } from "express";
 
 import {
   createUserHandler,
@@ -8,13 +8,16 @@ import {
   postRatingHandler,
   getRatingHandler,
 } from "./controller/rating.controller";
+import {
+  postHistoryHandler,
+  getHistoryHandler,
+} from "./controller/history.controller";
 
-import UserModel from "./models/user.model";
-import { createRatingSchema, getRatingSchema } from "./schema/rating.schema";
+import { postRatingSchema, getRatingSchema } from "./schema/rating.schema";
 import { createUserSchema, getUserSchema } from "./schema/user.schema";
-
+import { getHistorySchema, postHistorySchema } from "./schema/history.schema";
 import validateResource from "./middleware/validateResource";
-import log from "./utils/logger";
+
 
 const routes = (app: Express) => {
   app.get("/healthCheck", (req: Request, res: Response) => {
@@ -30,13 +33,25 @@ const routes = (app: Express) => {
 
   app.post(
     "/api/post-rating",
-    validateResource(createRatingSchema),
+    validateResource(postRatingSchema),
     postRatingHandler
   );
   app.get(
     "/api/get-rating/:username",
     validateResource(getRatingSchema),
     getRatingHandler
+  );
+
+  app.get(
+    "/api/get-history/:username",
+    validateResource(getHistorySchema),
+    getHistoryHandler
+  );
+
+  app.post(
+    "/api/post-history",
+    validateResource(postHistorySchema),
+    postHistoryHandler
   );
 };
 

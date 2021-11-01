@@ -2,10 +2,10 @@ import { Request, Response } from "express";
 import log from "./../utils/logger";
 
 import { postRating, getRating } from "./../service/rating.service";
-import { CreateRatingInput, GetRatingInput } from "./../schema/rating.schema";
+import { PostRatingInput, GetRatingInput } from "./../schema/rating.schema";
 
 export const postRatingHandler = async (
-  req: Request<{}, {}, CreateRatingInput["body"]>,
+  req: Request<{}, {}, PostRatingInput["body"]>,
   res: Response
 ) => {
   try {
