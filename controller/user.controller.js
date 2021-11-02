@@ -4,8 +4,8 @@ const { omit } = require("lodash");
 
 const createUserHandler = async (req, res) => {
   try {
-    const user = await createUser(req.body);
-    return res.send(omit(user.toJSON(), "password"));
+    const response = await createUser(req.body);
+    return res.send(response);
   } catch (e) {
     log.error(e);
     return res.status(409).send(e.message);
@@ -14,12 +14,9 @@ const createUserHandler = async (req, res) => {
 
 const getUserHandler = async (req, res) => {
   try {
-    const user = await getUser(req.body);
-
-    if (user["status"] == 200) res.status(200).send("User Found");
-    else if (user["status"] == 404) res.status(404).send("User not found");
+    const response = await getUser(req.body);
+    return res.send(response)
   } catch (e) {
-    log.error(e);
     return res.status(409).send(e.message);
   }
 };
