@@ -1,7 +1,7 @@
 const log = require("./../utils/logger");
 
-const  { postHistory, getHistory } = require("../service/history.service");
- const postHistoryHandler = async (req, res) => {
+const { postHistory, getHistory } = require("../service/history.service");
+const postHistoryHandler = async (req, res) => {
   try {
     const response = await postHistory(req.body);
     res.send(response);
@@ -11,7 +11,7 @@ const  { postHistory, getHistory } = require("../service/history.service");
   }
 };
 
- const getHistoryHandler = async (req, res) => {
+const getHistoryHandler = async (req, res) => {
   try {
     let username = req.params.username;
     const response = await getHistory({ username });

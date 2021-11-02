@@ -34,5 +34,4 @@ const getHistory = async (input) => {
     throw new Error(err);
   }
 };
-
 module.exports = { postHistory, getHistory };

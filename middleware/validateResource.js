@@ -11,4 +11,4 @@ const validateResource = (schema) => (req, res, next) => {
   }
 };
 
-module.exports= validateResource;
+module.exports = validateResource;

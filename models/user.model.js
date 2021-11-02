@@ -1,5 +1,5 @@
-const mongoose =require("mongoose");
-const bcrypt =require("bcrypt");
+const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
 
 const userSchema = new mongoose.Schema(
   {
@@ -32,4 +32,4 @@ userSchema.methods.comparePassword = async function (candidatePassword) {
 
 const UserModel = mongoose.model("User", userSchema);
 
-module.exports= UserModel;
+module.exports = UserModel;
