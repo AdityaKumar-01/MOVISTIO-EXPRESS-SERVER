@@ -14,7 +14,7 @@ dotenv.config();
 const connect = require("./utils/connect");
 const log = require("./utils/logger");
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 8000;
 
 
 app.use(express.json());

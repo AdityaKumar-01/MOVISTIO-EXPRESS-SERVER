@@ -22,8 +22,8 @@ const {
 } = require("./schema/history.schema");
 const validateResource = require("./middleware/validateResource");
 
-router.get("/healthCheck", (req, res) => {
-  res.sendStatus(200);
+router.get("/", (req, res) => {
+  res.send({status: 200, data:null, msg:"EXPRESS server for MOVISTIO is up and running"});
 });
 
 router.post(
