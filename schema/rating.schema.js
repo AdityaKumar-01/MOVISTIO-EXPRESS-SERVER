@@ -1,6 +1,6 @@
-import { object, tuple, number, TypeOf, string } from "zod";
+const { object, tuple, number, string } = require("zod");
 
-export const postRatingSchema = object({
+const postRatingSchema = object({
   body: object({
     username: string({
       required_error: "Username required",
@@ -18,12 +18,12 @@ export const postRatingSchema = object({
   }),
 });
 
-export const getRatingSchema = object({
+const getRatingSchema = object({
   params: object({
     username: string({
       required_error: "Username required",
     }),
   }),
 });
-export type PostRatingInput = TypeOf<typeof postRatingSchema>;
-export type GetRatingInput = TypeOf<typeof getRatingSchema>;
+
+module.exports = { postRatingSchema, getRatingSchema };

@@ -1,28 +1,21 @@
-import { DocumentDefinition } from "mongoose";
-import UserModel, { UserDocument } from "../models/user.model";
-import bcrypt from "bcrypt";
+const UserModel = require("../models/user.model");
+const bcrypt = require("bcrypt");
 
-export const createUser = async (
-  input: DocumentDefinition<
-    Omit<UserDocument, "createdAt" | "updatedAt" | "comparePassword">
-  >
-) => {
+const createUser = async (input) => {
+  
   try {
     let users = await UserModel.find({ userName: input["username"] });
     if (users.length > 0) {
       throw new Error("User already exists ");
     }
     return await UserModel.create(input);
-  } catch (e: any) {
+  } catch (e) {
+
     throw new Error(e);
   }
 };
 
-export const getUser = async (
-  input: DocumentDefinition<
-    Omit<UserDocument, "createdAt" | "updatedAt" | "comparePassword">
-  >
-) => {
+const getUser = async (input) => {
   let user = await UserModel.find({
     username: input["username"],
   });
@@ -33,3 +26,5 @@ export const getUser = async (
     return { data: user, status: 200 };
   } else return { data: null, status: 404 };
 };
+
+module.exports = { createUser, getUser };

@@ -1,7 +1,6 @@
-import { DocumentDefinition } from "mongoose";
-import RatingModel, { RatingDocument } from "../models/rating.model";
+const RatingModel = require("../models/rating.model");
 
-export const postRating = async (input: DocumentDefinition<RatingDocument>) => {
+const postRating = async (input) => {
   try {
     let users = await RatingModel.find({ username: input["username"] });
     if (users.length == 0) {
@@ -14,14 +13,12 @@ export const postRating = async (input: DocumentDefinition<RatingDocument>) => {
       );
       return { status: 200, data: user, msg: "OK" };
     }
-  } catch (error: any) {
+  } catch (error) {
     throw new Error(error);
   }
 };
 
-export const getRating = async (
-  input: DocumentDefinition<Omit<RatingDocument, "ratings">>
-) => {
+const getRating = async (input) => {
   try {
     let ratings = await RatingModel.find({ username: input.username });
 
@@ -29,7 +26,8 @@ export const getRating = async (
       return { status: 200, data: ratings[0].ratings, msg: "OK" };
     else
       return { status: 404, data: null, msg: "User hasn't given any ratings" };
-  } catch (err: any) {
+  } catch (err) {
     throw new Error(err);
   }
 };
+module.exports = { postRating, getRating };

@@ -1,6 +1,6 @@
-import { TypeOf, object, tuple, string, date } from "zod";
+const { object, tuple, string } = require("zod");
 
-export const postHistorySchema = object({
+const postHistorySchema = object({
   body: object({
     username: string({
       required_error: "Username must be provided",
@@ -18,7 +18,7 @@ export const postHistorySchema = object({
   }),
 });
 
-export const getHistorySchema = object({
+const getHistorySchema = object({
   params: object({
     username: string({
       required_error: "Username must be provided",
@@ -26,5 +26,4 @@ export const getHistorySchema = object({
   }),
 });
 
-export type PostHistoryInput = TypeOf<typeof postHistorySchema>;
-export type GetHistoryInput = TypeOf<typeof getHistorySchema>;
+module.exports = { postHistorySchema, getHistorySchema };

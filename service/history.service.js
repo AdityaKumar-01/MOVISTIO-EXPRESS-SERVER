@@ -1,9 +1,6 @@
-import { DocumentDefinition } from "mongoose";
-import HistoryModel, { HistoryDocument } from "../models/history.model";
+const HistoryModel = require("../models/history.model");
 
-export const postHistory = async (
-  input: DocumentDefinition<HistoryDocument>
-) => {
+const postHistory = async (input) => {
   try {
     let histories = await HistoryModel.find({ username: input.username });
     if (histories.length == 0) {
@@ -16,14 +13,12 @@ export const postHistory = async (
       );
       return { status: 200, data: history, msg: "OK" };
     }
-  } catch (e: any) {
+  } catch (e) {
     throw new Error(e);
   }
 };
 
-export const getHistory = async (
-  input: DocumentDefinition<Omit<HistoryDocument, "searches">>
-) => {
+const getHistory = async (input) => {
   try {
     let histories = await HistoryModel.find({ username: input.username });
 
@@ -35,7 +30,9 @@ export const getHistory = async (
         data: null,
         msg: "User hasn't searched anything",
       };
-  } catch (err: any) {
+  } catch (err) {
     throw new Error(err);
   }
 };
+
+module.exports = { postHistory, getHistory };
