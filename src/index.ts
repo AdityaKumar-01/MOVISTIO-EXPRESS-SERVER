@@ -7,7 +7,7 @@ import log from "./utils/logger";
 
 import routes from "./routes";
 
-const PORT = config.get<number>("port");
+const PORT = process.env.PORT || config.get<number>("port");
 
 const app = express();
 
